@@ -1,0 +1,22 @@
+{
+	"BUILD_DIR" : "/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build/pi_agent_mp3_ui_autogen",
+	"CMAKE_BINARY_DIR" : "/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/john/workplace/pi-agent-mp3-player/app/qt_ui/src",
+	"CMAKE_SOURCE_DIR" : "/home/john/workplace/pi-agent-mp3-player/app/qt_ui/src",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Unix Makefiles",
+	"INCLUDE_DIR" : "/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build/pi_agent_mp3_ui_autogen/include",
+	"INPUTS" : [ "/home/john/workplace/pi-agent-mp3-player/app/qt_ui/src/qml/main.qml" ],
+	"LOCK_FILE" : "/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build/CMakeFiles/pi_agent_mp3_ui_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build/CMakeFiles/pi_agent_mp3_ui_autogen.dir/AutoRcc_resources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/john/workplace/pi-agent-mp3-player/app/qt_ui/src/resources.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

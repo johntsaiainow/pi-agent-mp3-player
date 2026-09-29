@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
