@@ -1,0 +1,27 @@
+{
+  "cmake.sourceDirectory": "${workspaceFolder}",
+  "cmake.buildDirectory": "${workspaceFolder}/build",
+  
+  // C++ 關聯與格式化
+  "files.associations": {
+    "*.qml": "qml",
+    "*.qrc": "xml"
+  },
+
+  // 告知 CMake Tools 使用系統安裝的 Qt6
+  "cmake.configureSettings": {
+    "CMAKE_PREFIX_PATH": "/usr/lib/x86_64-linux-gnu/cmake/Qt6"
+  },
+
+  // C++ IntelliSense 補充
+  "C_Cpp.default.cppStandard": "c++17",
+  "C_Cpp.default.includePath": [
+    "${workspaceFolder}/**",
+    "/usr/include/x86_64-linux-gnu/qt6",
+    "/usr/include/x86_64-linux-gnu/qt6/QtCore",
+    "/usr/include/x86_64-linux-gnu/qt6/QtGui",
+    "/usr/include/x86_64-linux-gnu/qt6/Qml",
+    "/usr/include/x86_64-linux-gnu/qt6/Quick",
+    "/usr/include/x86_64-linux-gnu/qt6/QtMultimedia"
+  ]
+}

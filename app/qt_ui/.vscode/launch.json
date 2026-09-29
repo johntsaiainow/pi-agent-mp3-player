@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "(gdb) Launch Qt App",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/pi_agent_mp3_ui",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [
+        {
+          "name": "QT_QPA_PLATFORM",
+          "value": "xcb" // 本地桌面視窗模式 (若要在樹莓派 EGLFS 執行可設為 eglfs)
+        },
+        {
+          "name": "QSG_RENDER_LOOP",
+          "value": "basic"
+        }
+      ],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "CMake: build"
+    }
+  ]
+}
