@@ -71,6 +71,7 @@ include CMakeFiles/pi_agent_mp3_ui.dir/flags.make
 
 pi_agent_mp3_ui_autogen/EWIEGA46WW/qrc_resources.cpp: /home/john/workplace/pi-agent-mp3-player/app/qt_ui/src/resources.qrc
 pi_agent_mp3_ui_autogen/EWIEGA46WW/qrc_resources.cpp: CMakeFiles/pi_agent_mp3_ui_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json
+pi_agent_mp3_ui_autogen/EWIEGA46WW/qrc_resources.cpp: /home/john/workplace/pi-agent-mp3-player/app/qt_ui/src/qml/default_cover.svg
 pi_agent_mp3_ui_autogen/EWIEGA46WW/qrc_resources.cpp: /home/john/workplace/pi-agent-mp3-player/app/qt_ui/src/qml/main.qml
 pi_agent_mp3_ui_autogen/EWIEGA46WW/qrc_resources.cpp: /usr/lib/qt6/libexec/rcc
 pi_agent_mp3_ui_autogen/EWIEGA46WW/qrc_resources.cpp: /usr/lib/qt6/libexec/rcc

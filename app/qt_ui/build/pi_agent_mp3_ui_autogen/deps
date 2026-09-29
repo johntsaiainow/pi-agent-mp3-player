@@ -85,10 +85,12 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/c++/15/bits/stl_list.h \
 	/usr/include/c++/15/bits/stl_map.h \
 	/usr/include/c++/15/bits/stl_multimap.h \
+	/usr/include/c++/15/bits/stl_multiset.h \
 	/usr/include/c++/15/bits/stl_numeric.h \
 	/usr/include/c++/15/bits/stl_pair.h \
 	/usr/include/c++/15/bits/stl_raw_storage_iter.h \
 	/usr/include/c++/15/bits/stl_relops.h \
+	/usr/include/c++/15/bits/stl_set.h \
 	/usr/include/c++/15/bits/stl_tempbuf.h \
 	/usr/include/c++/15/bits/stl_tree.h \
 	/usr/include/c++/15/bits/stl_uninitialized.h \
@@ -101,14 +103,17 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/c++/15/bits/uniform_int_dist.h \
 	/usr/include/c++/15/bits/unique_ptr.h \
 	/usr/include/c++/15/bits/unordered_map.h \
+	/usr/include/c++/15/bits/unordered_set.h \
 	/usr/include/c++/15/bits/uses_allocator.h \
 	/usr/include/c++/15/bits/uses_allocator_args.h \
 	/usr/include/c++/15/bits/utility.h \
 	/usr/include/c++/15/bits/vector.tcc \
 	/usr/include/c++/15/bits/version.h \
+	/usr/include/c++/15/cassert \
 	/usr/include/c++/15/cctype \
 	/usr/include/c++/15/cerrno \
 	/usr/include/c++/15/chrono \
+	/usr/include/c++/15/climits \
 	/usr/include/c++/15/clocale \
 	/usr/include/c++/15/cmath \
 	/usr/include/c++/15/compare \
@@ -123,6 +128,7 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/c++/15/debug/assertions.h \
 	/usr/include/c++/15/debug/debug.h \
 	/usr/include/c++/15/exception \
+	/usr/include/c++/15/experimental/source_location \
 	/usr/include/c++/15/ext/aligned_buffer.h \
 	/usr/include/c++/15/ext/alloc_traits.h \
 	/usr/include/c++/15/ext/atomicity.h \
@@ -145,6 +151,7 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/c++/15/pstl/glue_numeric_defs.h \
 	/usr/include/c++/15/pstl/pstl_config.h \
 	/usr/include/c++/15/ratio \
+	/usr/include/c++/15/set \
 	/usr/include/c++/15/stdexcept \
 	/usr/include/c++/15/streambuf \
 	/usr/include/c++/15/string \
@@ -166,6 +173,7 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/c++/15/type_traits \
 	/usr/include/c++/15/typeinfo \
 	/usr/include/c++/15/unordered_map \
+	/usr/include/c++/15/unordered_set \
 	/usr/include/c++/15/utility \
 	/usr/include/c++/15/variant \
 	/usr/include/c++/15/vector \
@@ -175,7 +183,9 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/errno.h \
 	/usr/include/features-time64.h \
 	/usr/include/features.h \
+	/usr/include/limits.h \
 	/usr/include/linux/errno.h \
+	/usr/include/linux/limits.h \
 	/usr/include/linux/posix_types.h \
 	/usr/include/linux/sched/types.h \
 	/usr/include/linux/stddef.h \
@@ -205,8 +215,11 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/bits/floatn-common.h \
 	/usr/include/x86_64-linux-gnu/bits/floatn.h \
 	/usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+	/usr/include/x86_64-linux-gnu/bits/local_lim.h \
 	/usr/include/x86_64-linux-gnu/bits/locale.h \
 	/usr/include/x86_64-linux-gnu/bits/long-double.h \
+	/usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+	/usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
 	/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
 	/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
 	/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
@@ -252,10 +265,12 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
 	/usr/include/x86_64-linux-gnu/bits/typesizes.h \
 	/usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+	/usr/include/x86_64-linux-gnu/bits/uio_lim.h \
 	/usr/include/x86_64-linux-gnu/bits/waitflags.h \
 	/usr/include/x86_64-linux-gnu/bits/waitstatus.h \
 	/usr/include/x86_64-linux-gnu/bits/wchar.h \
 	/usr/include/x86_64-linux-gnu/bits/wordsize.h \
+	/usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
 	/usr/include/x86_64-linux-gnu/c++/15/bits/atomic_word.h \
 	/usr/include/x86_64-linux-gnu/c++/15/bits/c++allocator.h \
 	/usr/include/x86_64-linux-gnu/c++/15/bits/c++config.h \
@@ -267,13 +282,21 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/c++/15/bits/os_defines.h \
 	/usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
 	/usr/include/x86_64-linux-gnu/gnu/stubs.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QList \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QUrl \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QVariant \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/QVariantList \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/q17memory.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/q20functional.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/q20iterator.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/q20memory.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/q20type_traits.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/q20utility.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/q23type_traits.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/q23utility.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qalgorithms.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qalloc.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qanystringview.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qarraydata.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qarraydataops.h \
@@ -297,8 +320,10 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qcontainerfwd.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qcontainerinfo.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qcontainertools_impl.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qcontiguouscache.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qdarwinhelpers.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qdatastream.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qdebug.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qexceptionhandling.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qflags.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qfloat16.h \
@@ -308,7 +333,9 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qgenericatomic.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qglobal.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qglobalstatic.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qhashfunctions.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevicebase.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qiterable.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qiterator.h \
@@ -316,6 +343,7 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qlist.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qlogging.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qmalloc.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qmap.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qmath.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qmetacontainer.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qmetatype.h \
@@ -329,9 +357,17 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qoverload.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qpair.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qprocessordetection.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qproperty.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qpropertyprivate.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qrefcount.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qscopedpointer.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qscopeguard.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qset.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qshareddata.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qshareddata_impl.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer_impl.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qspan.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qstdlibdetection.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qstring.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qstringalgorithms.h \
@@ -356,6 +392,7 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtdeprecationdefinitions.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtdeprecationmarkers.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtenvironmentvariables.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtextstream.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtformat_impl.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtmetamacros.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtnoop.h \
@@ -369,6 +406,9 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qtypes.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qurl.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qutf8stringview.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvariantlist.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qversiontagging.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qxptype_traits.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtCore/qyieldcpu.h \
@@ -376,14 +416,24 @@ pi_agent_mp3_ui_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiexports.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiglobal.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtMultimedia/QAudioOutput \
+	/usr/include/x86_64-linux-gnu/qt6/QtMultimedia/QMediaMetaData \
 	/usr/include/x86_64-linux-gnu/qt6/QtMultimedia/QMediaPlayer \
 	/usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qaudio.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qaudiooutput.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qmediametadata.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qmediaplayer.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qtaudio.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qtmultimedia-config.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qtmultimediaexports.h \
 	/usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qtmultimediaglobal.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtNetwork/QLocalServer \
+	/usr/include/x86_64-linux-gnu/qt6/QtNetwork/QLocalSocket \
+	/usr/include/x86_64-linux-gnu/qt6/QtNetwork/qabstractsocket.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtNetwork/qlocalserver.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtNetwork/qlocalsocket.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtNetwork/qtnetwork-config.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtNetwork/qtnetworkexports.h \
+	/usr/include/x86_64-linux-gnu/qt6/QtNetwork/qtnetworkglobal.h \
 	/usr/include/x86_64-linux-gnu/sys/cdefs.h \
 	/usr/include/x86_64-linux-gnu/sys/select.h \
 	/usr/include/x86_64-linux-gnu/sys/single_threaded.h \

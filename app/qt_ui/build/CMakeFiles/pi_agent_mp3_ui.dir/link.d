@@ -41,7 +41,6 @@ pi_agent_mp3_ui: \
   /usr/lib/gcc/x86_64-linux-gnu/15/libgcc.a \
   /usr/lib/gcc/x86_64-linux-gnu/15/crtendS.o \
   /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o \
-  /usr/lib/x86_64-linux-gnu/libQt6Network.so.6.10.2 \
   /usr/lib/x86_64-linux-gnu/libQt6DBus.so.6 \
   /usr/lib/x86_64-linux-gnu/libpulse.so.0 \
   /usr/lib/x86_64-linux-gnu/libm.so.6 \
@@ -58,18 +57,18 @@ pi_agent_mp3_ui: \
   /usr/lib/x86_64-linux-gnu/libmd4c.so.0 \
   /usr/lib/x86_64-linux-gnu/libfreetype.so.6 \
   /usr/lib/x86_64-linux-gnu/libz.so.1 \
+  /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2 \
+  /usr/lib/x86_64-linux-gnu/libbrotlidec.so.1 \
+  /usr/lib/x86_64-linux-gnu/libzstd.so.1 \
+  /usr/lib/x86_64-linux-gnu/libproxy.so.1 \
+  /lib/x86_64-linux-gnu/libproxy.so.1 \
+  /usr/lib/x86_64-linux-gnu/libproxy.so.1 \
+  /usr/lib/x86_64-linux-gnu/libproxy.so.1 \
   /usr/lib/x86_64-linux-gnu/libicui18n.so.78 \
   /usr/lib/x86_64-linux-gnu/libicuuc.so.78 \
   /usr/lib/x86_64-linux-gnu/libdouble-conversion.so.3 \
   /usr/lib/x86_64-linux-gnu/libb2.so.1 \
   /usr/lib/x86_64-linux-gnu/libpcre2-16.so.0 \
-  /usr/lib/x86_64-linux-gnu/libzstd.so.1 \
-  /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2 \
-  /usr/lib/x86_64-linux-gnu/libbrotlidec.so.1 \
-  /usr/lib/x86_64-linux-gnu/libproxy.so.1 \
-  /lib/x86_64-linux-gnu/libproxy.so.1 \
-  /usr/lib/x86_64-linux-gnu/libproxy.so.1 \
-  /usr/lib/x86_64-linux-gnu/libproxy.so.1 \
   /usr/lib/x86_64-linux-gnu/libdbus-1.so.3 \
   /usr/lib/x86_64-linux-gnu/pulseaudio/libpulsecommon-17.0.so \
   /usr/lib/x86_64-linux-gnu/libGLdispatch.so.0 \
@@ -79,8 +78,6 @@ pi_agent_mp3_ui: \
   /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0 \
   /usr/lib/x86_64-linux-gnu/libgraphite2.so.3 \
   /usr/lib/x86_64-linux-gnu/libbz2.so.1.0 \
-  /usr/lib/x86_64-linux-gnu/libicudata.so.78 \
-  /usr/lib/x86_64-linux-gnu/libgomp.so.1 \
   /usr/lib/x86_64-linux-gnu/libkrb5.so.3 \
   /usr/lib/x86_64-linux-gnu/libk5crypto.so.3 \
   /usr/lib/x86_64-linux-gnu/libcom_err.so.2 \
@@ -88,6 +85,8 @@ pi_agent_mp3_ui: \
   /usr/lib/x86_64-linux-gnu/libbrotlicommon.so.1 \
   /usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so \
   /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0 \
+  /usr/lib/x86_64-linux-gnu/libicudata.so.78 \
+  /usr/lib/x86_64-linux-gnu/libgomp.so.1 \
   /usr/lib/x86_64-linux-gnu/libsystemd.so.0 \
   /usr/lib/x86_64-linux-gnu/libsndfile.so.1 \
   /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1 \
@@ -215,8 +214,6 @@ CMakeFiles/pi_agent_mp3_ui.dir/pi_agent_mp3_ui_autogen/EWIEGA46WW/qrc_resources.
 
 /usr/lib/gcc/x86_64-linux-gnu/15/../../../x86_64-linux-gnu/crtn.o:
 
-/usr/lib/x86_64-linux-gnu/libQt6Network.so.6.10.2:
-
 /usr/lib/x86_64-linux-gnu/libQt6DBus.so.6:
 
 /usr/lib/x86_64-linux-gnu/libpulse.so.0:
@@ -249,6 +246,20 @@ CMakeFiles/pi_agent_mp3_ui.dir/pi_agent_mp3_ui_autogen/EWIEGA46WW/qrc_resources.
 
 /usr/lib/x86_64-linux-gnu/libz.so.1:
 
+/usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2:
+
+/usr/lib/x86_64-linux-gnu/libbrotlidec.so.1:
+
+/usr/lib/x86_64-linux-gnu/libzstd.so.1:
+
+/usr/lib/x86_64-linux-gnu/libproxy.so.1:
+
+/lib/x86_64-linux-gnu/libproxy.so.1:
+
+/usr/lib/x86_64-linux-gnu/libproxy.so.1:
+
+/usr/lib/x86_64-linux-gnu/libproxy.so.1:
+
 /usr/lib/x86_64-linux-gnu/libicui18n.so.78:
 
 /usr/lib/x86_64-linux-gnu/libicuuc.so.78:
@@ -258,20 +269,6 @@ CMakeFiles/pi_agent_mp3_ui.dir/pi_agent_mp3_ui_autogen/EWIEGA46WW/qrc_resources.
 /usr/lib/x86_64-linux-gnu/libb2.so.1:
 
 /usr/lib/x86_64-linux-gnu/libpcre2-16.so.0:
-
-/usr/lib/x86_64-linux-gnu/libzstd.so.1:
-
-/usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2:
-
-/usr/lib/x86_64-linux-gnu/libbrotlidec.so.1:
-
-/usr/lib/x86_64-linux-gnu/libproxy.so.1:
-
-/lib/x86_64-linux-gnu/libproxy.so.1:
-
-/usr/lib/x86_64-linux-gnu/libproxy.so.1:
-
-/usr/lib/x86_64-linux-gnu/libproxy.so.1:
 
 /usr/lib/x86_64-linux-gnu/libdbus-1.so.3:
 
@@ -291,10 +288,6 @@ CMakeFiles/pi_agent_mp3_ui.dir/pi_agent_mp3_ui_autogen/EWIEGA46WW/qrc_resources.
 
 /usr/lib/x86_64-linux-gnu/libbz2.so.1.0:
 
-/usr/lib/x86_64-linux-gnu/libicudata.so.78:
-
-/usr/lib/x86_64-linux-gnu/libgomp.so.1:
-
 /usr/lib/x86_64-linux-gnu/libkrb5.so.3:
 
 /usr/lib/x86_64-linux-gnu/libk5crypto.so.3:
@@ -308,6 +301,10 @@ CMakeFiles/pi_agent_mp3_ui.dir/pi_agent_mp3_ui_autogen/EWIEGA46WW/qrc_resources.
 /usr/lib/x86_64-linux-gnu/libproxy/libpxbackend-1.0.so:
 
 /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0:
+
+/usr/lib/x86_64-linux-gnu/libicudata.so.78:
+
+/usr/lib/x86_64-linux-gnu/libgomp.so.1:
 
 /usr/lib/x86_64-linux-gnu/libsystemd.so.0:
 

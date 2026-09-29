@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     PlayerController playerController;
 
-    // 將 C++ 播放控制器註冊為 QML 全域 Context Property
+    // 關鍵！必須在 load 之前注入 context property "player"
     engine.rootContext()->setContextProperty("player", &playerController);
 
     const QUrl url(QStringLiteral("qrc:/qml/main.qml"));

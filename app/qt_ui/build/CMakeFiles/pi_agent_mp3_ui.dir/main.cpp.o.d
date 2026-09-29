@@ -428,4 +428,23 @@ CMakeFiles/pi_agent_mp3_ui.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qtaudio.h \
  /usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qaudio.h \
  /usr/include/x86_64-linux-gnu/qt6/QtMultimedia/QAudioOutput \
- /usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qaudiooutput.h
+ /usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qaudiooutput.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtMultimedia/QMediaMetaData \
+ /usr/include/x86_64-linux-gnu/qt6/QtMultimedia/qmediametadata.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QVariantList \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariantlist.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QList \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qlist.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QVariant \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QUrl \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qurl.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtNetwork/QLocalServer \
+ /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qlocalserver.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qabstractsocket.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qproperty.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qpropertyprivate.h \
+ /usr/include/c++/15/experimental/source_location \
+ /usr/include/x86_64-linux-gnu/qt6/QtNetwork/QLocalSocket \
+ /usr/include/x86_64-linux-gnu/qt6/QtNetwork/qlocalsocket.h

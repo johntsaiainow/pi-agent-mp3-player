@@ -8,6 +8,7 @@
 
 #include "../../../src/playercontroller.h"
 #include <QtCore/qmetatype.h>
+#include <QtCore/QList>
 
 #include <QtCore/qtmochelpers.h>
 
@@ -45,16 +46,35 @@ template <> constexpr inline auto PlayerController::qt_create_metaobjectdata<qt_
         "positionChanged",
         "durationChanged",
         "trackChanged",
+        "coverArtUrlChanged",
+        "playlistChanged",
+        "currentIndexChanged",
         "playPause",
-        "playTrack",
-        "filePath",
         "setVolume",
         "volume",
         "setPosition",
         "position",
+        "addFilesToPlaylist",
+        "QList<QUrl>",
+        "urls",
+        "playAtIndex",
+        "index",
+        "nextTrack",
+        "previousTrack",
+        "updateMetaData",
+        "handleMediaStatusChanged",
+        "QMediaPlayer::MediaStatus",
+        "status",
+        "handleNewConnection",
+        "handleSocketReadyRead",
         "isPlaying",
         "duration",
-        "currentTrackTitle"
+        "currentTrackTitle",
+        "currentArtist",
+        "coverArtUrl",
+        "playlist",
+        "QVariantList",
+        "currentIndex"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -68,32 +88,64 @@ template <> constexpr inline auto PlayerController::qt_create_metaobjectdata<qt_
         QtMocHelpers::SignalData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'trackChanged'
         QtMocHelpers::SignalData<void()>(6, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'coverArtUrlChanged'
+        QtMocHelpers::SignalData<void()>(7, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'playlistChanged'
+        QtMocHelpers::SignalData<void()>(8, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'currentIndexChanged'
+        QtMocHelpers::SignalData<void()>(9, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'playPause'
-        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'playTrack'
-        QtMocHelpers::SlotData<void(const QString &)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 9 },
-        }}),
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'setVolume'
-        QtMocHelpers::SlotData<void(float)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Float, 11 },
+        QtMocHelpers::SlotData<void(float)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Float, 12 },
         }}),
         // Slot 'setPosition'
-        QtMocHelpers::SlotData<void(qint64)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::LongLong, 13 },
+        QtMocHelpers::SlotData<void(qint64)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::LongLong, 14 },
         }}),
+        // Slot 'addFilesToPlaylist'
+        QtMocHelpers::SlotData<void(const QList<QUrl> &)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 16, 17 },
+        }}),
+        // Slot 'playAtIndex'
+        QtMocHelpers::SlotData<void(int)>(18, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 19 },
+        }}),
+        // Slot 'nextTrack'
+        QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'previousTrack'
+        QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'updateMetaData'
+        QtMocHelpers::SlotData<void()>(22, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'handleMediaStatusChanged'
+        QtMocHelpers::SlotData<void(QMediaPlayer::MediaStatus)>(23, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 24, 25 },
+        }}),
+        // Slot 'handleNewConnection'
+        QtMocHelpers::SlotData<void()>(26, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'handleSocketReadyRead'
+        QtMocHelpers::SlotData<void()>(27, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
         // property 'isPlaying'
-        QtMocHelpers::PropertyData<bool>(14, QMetaType::Bool, QMC::DefaultPropertyFlags, 0),
+        QtMocHelpers::PropertyData<bool>(28, QMetaType::Bool, QMC::DefaultPropertyFlags, 0),
         // property 'volume'
-        QtMocHelpers::PropertyData<float>(11, QMetaType::Float, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 1),
+        QtMocHelpers::PropertyData<float>(12, QMetaType::Float, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 1),
         // property 'position'
-        QtMocHelpers::PropertyData<qint64>(13, QMetaType::LongLong, QMC::DefaultPropertyFlags, 2),
+        QtMocHelpers::PropertyData<qint64>(14, QMetaType::LongLong, QMC::DefaultPropertyFlags, 2),
         // property 'duration'
-        QtMocHelpers::PropertyData<qint64>(15, QMetaType::LongLong, QMC::DefaultPropertyFlags, 3),
+        QtMocHelpers::PropertyData<qint64>(29, QMetaType::LongLong, QMC::DefaultPropertyFlags, 3),
         // property 'currentTrackTitle'
-        QtMocHelpers::PropertyData<QString>(16, QMetaType::QString, QMC::DefaultPropertyFlags, 4),
+        QtMocHelpers::PropertyData<QString>(30, QMetaType::QString, QMC::DefaultPropertyFlags, 4),
+        // property 'currentArtist'
+        QtMocHelpers::PropertyData<QString>(31, QMetaType::QString, QMC::DefaultPropertyFlags, 4),
+        // property 'coverArtUrl'
+        QtMocHelpers::PropertyData<QString>(32, QMetaType::QString, QMC::DefaultPropertyFlags, 5),
+        // property 'playlist'
+        QtMocHelpers::PropertyData<QVariantList>(33, 0x80000000 | 34, QMC::DefaultPropertyFlags | QMC::EnumOrFlag, 6),
+        // property 'currentIndex'
+        QtMocHelpers::PropertyData<int>(35, QMetaType::Int, QMC::DefaultPropertyFlags, 7),
     };
     QtMocHelpers::UintData qt_enums {
     };
@@ -120,10 +172,20 @@ void PlayerController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 2: _t->positionChanged(); break;
         case 3: _t->durationChanged(); break;
         case 4: _t->trackChanged(); break;
-        case 5: _t->playPause(); break;
-        case 6: _t->playTrack((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 7: _t->setVolume((*reinterpret_cast<std::add_pointer_t<float>>(_a[1]))); break;
-        case 8: _t->setPosition((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
+        case 5: _t->coverArtUrlChanged(); break;
+        case 6: _t->playlistChanged(); break;
+        case 7: _t->currentIndexChanged(); break;
+        case 8: _t->playPause(); break;
+        case 9: _t->setVolume((*reinterpret_cast<std::add_pointer_t<float>>(_a[1]))); break;
+        case 10: _t->setPosition((*reinterpret_cast<std::add_pointer_t<qint64>>(_a[1]))); break;
+        case 11: _t->addFilesToPlaylist((*reinterpret_cast<std::add_pointer_t<QList<QUrl>>>(_a[1]))); break;
+        case 12: _t->playAtIndex((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 13: _t->nextTrack(); break;
+        case 14: _t->previousTrack(); break;
+        case 15: _t->updateMetaData(); break;
+        case 16: _t->handleMediaStatusChanged((*reinterpret_cast<std::add_pointer_t<QMediaPlayer::MediaStatus>>(_a[1]))); break;
+        case 17: _t->handleNewConnection(); break;
+        case 18: _t->handleSocketReadyRead(); break;
         default: ;
         }
     }
@@ -138,6 +200,12 @@ void PlayerController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
             return;
         if (QtMocHelpers::indexOfMethod<void (PlayerController::*)()>(_a, &PlayerController::trackChanged, 4))
             return;
+        if (QtMocHelpers::indexOfMethod<void (PlayerController::*)()>(_a, &PlayerController::coverArtUrlChanged, 5))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (PlayerController::*)()>(_a, &PlayerController::playlistChanged, 6))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (PlayerController::*)()>(_a, &PlayerController::currentIndexChanged, 7))
+            return;
     }
     if (_c == QMetaObject::ReadProperty) {
         void *_v = _a[0];
@@ -147,6 +215,10 @@ void PlayerController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 2: *reinterpret_cast<qint64*>(_v) = _t->position(); break;
         case 3: *reinterpret_cast<qint64*>(_v) = _t->duration(); break;
         case 4: *reinterpret_cast<QString*>(_v) = _t->currentTrackTitle(); break;
+        case 5: *reinterpret_cast<QString*>(_v) = _t->currentArtist(); break;
+        case 6: *reinterpret_cast<QString*>(_v) = _t->coverArtUrl(); break;
+        case 7: *reinterpret_cast<QVariantList*>(_v) = _t->playlist(); break;
+        case 8: *reinterpret_cast<int*>(_v) = _t->currentIndex(); break;
         default: break;
         }
     }
@@ -178,20 +250,20 @@ int PlayerController::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 19;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 19)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 19;
     }
     if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 9;
     }
     return _id;
 }
@@ -224,5 +296,23 @@ void PlayerController::durationChanged()
 void PlayerController::trackChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
+}
+
+// SIGNAL 5
+void PlayerController::coverArtUrlChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 5, nullptr);
+}
+
+// SIGNAL 6
+void PlayerController::playlistChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 6, nullptr);
+}
+
+// SIGNAL 7
+void PlayerController::currentIndexChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 7, nullptr);
 }
 QT_WARNING_POP
