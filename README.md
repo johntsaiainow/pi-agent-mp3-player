@@ -1,87 +1,122 @@
 # pi-agent-mp3-player
 
 > **AI-Driven, Voice-Enabled Embedded Audio Station on Raspberry Pi 3**  
-> Powered by Yocto Linux, Qt 6 EGLFS, Google AIY Voice Kit v1, GStreamer, and Pi Agent.
+> Qt 6 • GStreamer • Yocto Linux • Google AIY Voice Kit v1 • Pi Agent • UNIX IPC • MQTT
 
 [![Yocto](https://img.shields.io/badge/Yocto-Scarthgap-blue.svg)](https://www.yoctoproject.org/)
-[![UI](https://img.shields.io/badge/UI-Qt%206%20EGLFS-green.svg)](https://www.qt.io/)
+[![Ubuntu](https://img.shields.io/badge/Development-Ubuntu%2026.04%20LTS-orange.svg)](https://ubuntu.com/)
+[![Qt](https://img.shields.io/badge/UI-Qt%206-green.svg)](https://www.qt.io/)
+[![GStreamer](https://img.shields.io/badge/Audio-GStreamer-red.svg)](https://gstreamer.freedesktop.org/)
 [![Hardware](https://img.shields.io/badge/Hardware-Raspberry%20Pi%203-orange.svg)](https://www.raspberrypi.com/)
-[![Voice HAT](https://img.shields.io/badge/Audio-Google%20AIY%20Voice%20v1-red.svg)](https://aiyprojects.withgoogle.com/voice-v1/)
-[![Agent](https://img.shields.io/badge/Agent-Pi%20Agent-purple.svg)](https://pi.dev)
+[![Voice HAT](https://img.shields.io/badge/Audio-Google%20AIY%20Voice%20v1-purple.svg)](https://aiyprojects.withgoogle.com/voice-v1/)
+[![Agent](https://img.shields.io/badge/Agent-Pi%20Agent-blueviolet.svg)](https://pi.dev)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
 ## Overview
 
-**`pi-agent-mp3-player`** is an embedded, voice-controlled audio player built around the **Raspberry Pi 3**.
+**`pi-agent-mp3-player`** is an embedded, voice-enabled music player designed around the **Raspberry Pi 3**.
 
-The project combines:
+The project combines a lightweight Yocto Linux system with a native Qt 6 touch interface, GStreamer audio playback, Google AIY Voice Kit v1 hardware, and an external agent control layer.
 
-- **Yocto Linux** for a minimal, purpose-built embedded operating system
-- **Qt 6 / Qt Quick / EGLFS** for a direct-rendered touchscreen interface
-- **GStreamer** for audio playback
-- **Google AIY Voice Kit v1** for microphone, speaker, button, and LED integration
-- **Pi Agent** for voice-driven commands and LLM tool calling
-- **MQTT** for remote and networked control
-
-The goal is to create a small, fast-booting appliance that behaves less like a traditional Linux desktop and more like an **agent-native embedded device**.
+The system is designed to behave like an **AI appliance rather than a traditional Linux desktop**.
 
 ```text
-                 ┌──────────────────────────────────────┐
-                 │        Google AIY Voice Kit v1       │
-                 │                                      │
-                 │  Dual Mic Array   Speaker   Button  │
-                 │       │              │         │     │
-                 └───────┼──────────────┼─────────┼─────┘
-                         │ I2S           │ GPIO
-                         │               │
-                 ┌───────▼───────────────▼─────────────┐
-                 │           Raspberry Pi 3 B+          │
-                 │                                      │
-                 │  ┌──────────────┐  ┌─────────────┐ │
-                 │  │ Qt 6 / QML   │  │ Pi Agent    │ │
-                 │  │ EGLFS / DRM  │  │ Service     │ │
-                 │  └──────┬───────┘  └──────┬──────┘ │
-                 │         │                  │        │
-                 │         └───────┬──────────┘        │
-                 │                 │ IPC               │
-                 │         ┌───────▼────────┐          │
-                 │         │   GStreamer    │          │
-                 │         │ Audio Engine   │          │
-                 │         └────────────────┘          │
-                 │                                      │
-                 │              Yocto Linux             │
-                 └──────────────────────────────────────┘
+                    ┌───────────────────────────────┐
+                    │          Pi Agent             │
+                    │       Voice / LLM / Tools     │
+                    └───────────────┬───────────────┘
+                                    │
+                              UNIX IPC / MQTT
+                                    │
+                    ┌───────────────▼───────────────┐
+                    │       Player Controller       │
+                    │       Qt 6 / C++              │
+                    └───────────────┬───────────────┘
+                                    │
+                         ┌──────────▼──────────┐
+                         │     GStreamer       │
+                         │    Audio Engine     │
+                         └──────────┬──────────┘
+                                    │
+                                  ALSA
+                                    │
+                    ┌───────────────▼───────────────┐
+                    │     Google AIY Voice HAT      │
+                    │   Microphones / Speaker /     │
+                    │       Button / LED           │
+                    └───────────────────────────────┘
 ```
 
 ---
 
-## ✨ Features
+# ✨ Features
 
-### 🎙️ Google AIY Voice Kit Integration
+## 🎵 Music Player
 
-The AIY Voice Kit v1 provides the physical voice interface for the system.
+The Qt application provides a lightweight touch-oriented interface for:
 
-- Dual-microphone array
-- I2S audio capture
-- Speaker output
-- GPIO arcade-style push button
-- LED status feedback
-- AIY Voice HAT ALSA soundcard support
-- Push-to-talk interaction model
-
-The physical button provides a simple interaction model:
-
-> **Press → Speak → Agent interprets → Player responds**
+- MP3 playback
+- Play / pause
+- Previous / next track
+- Volume control
+- Playback status
+- Album artwork
+- ID3 metadata visualization
+- Default/fallback album artwork
+- External agent control
 
 ---
 
-### 🧠 Agent-Driven Audio Control
+## 🎙️ Google AIY Voice Kit v1
 
-The player is designed around an **agent-first control architecture** rather than a collection of hard-coded voice commands.
+The Google AIY Voice Kit v1 provides the physical voice interface.
 
-Example requests:
+Supported hardware integration includes:
+
+- Dual microphone array
+- I2S audio capture
+- Speaker output
+- GPIO push button
+- LED activity/status feedback
+- AIY Voice HAT ALSA soundcard
+
+The intended interaction model is deliberately simple:
+
+```text
+Press Button
+     │
+     ▼
+Speak
+     │
+     ▼
+Agent interprets request
+     │
+     ▼
+Player executes command
+     │
+     ▼
+Audio / UI response
+```
+
+---
+
+# 🧠 Agent Architecture
+
+The player is controlled through a small command interface rather than tightly coupling the Qt application to a specific AI implementation.
+
+This allows the agent to be:
+
+- Python
+- Pi Agent
+- Google AIY service
+- Local LLM
+- Cloud LLM
+- Another embedded device
+- Home automation controller
+
+Example commands:
 
 ```text
 "Play some classical music."
@@ -97,103 +132,433 @@ Example requests:
 "What song is playing?"
 ```
 
-The agent converts natural-language requests into structured actions that can be consumed by the player service.
-
-Conceptually:
+The agent converts natural-language intent into structured player operations.
 
 ```text
 Natural Language
        │
        ▼
-   Pi Agent
+┌──────────────┐
+│   AI Agent   │
+└──────┬───────┘
        │
        ▼
- Tool / Function Call
+Tool / Function Call
        │
        ▼
- JSON Command
+Structured Command
        │
        ▼
- Player Service
-       │
-       ├──────────► Qt UI
-       │
-       └──────────► GStreamer
+┌────────────────────┐
+│ PlayerController   │
+└─────────┬──────────┘
+          │
+          ├──────► GStreamer
+          │
+          └──────► Qt UI
 ```
 
 ---
 
-## 🖥️ Qt 6 EGLFS Interface
+# 🔌 IPC Architecture
 
-The graphical interface runs directly through **Qt 6 EGLFS**, avoiding a conventional desktop environment.
-
-This provides:
-
-- Qt Quick / QML UI
-- Full-screen appliance mode
-- DRM/KMS-based rendering
-- GPU-accelerated graphics where supported
-- Touchscreen-oriented interaction
-- Minimal system overhead
-
-The intended boot experience is:
+The Qt player exposes a **UNIX Domain Socket** for local agent communication:
 
 ```text
-Power On
-   │
-   ▼
+/tmp/pi_agent_mp3.sock
+```
+
+This provides a lightweight local IPC mechanism without requiring a network connection.
+
+```text
+Python Agent
+     │
+     │ UNIX Domain Socket
+     │
+     ▼
+/tmp/pi_agent_mp3.sock
+     │
+     ▼
+PlayerController
+     │
+     ├── Play
+     ├── Pause
+     ├── Next
+     ├── Previous
+     ├── Volume
+     └── Status
+```
+
+This separation keeps the UI and agent independent.
+
+The Qt application does not need to know whether a command originated from:
+
+- a Python script,
+- an LLM,
+- the AIY voice service,
+- MQTT,
+- or another local process.
+
+---
+
+# 🖥️ Qt 6 Application
+
+The Qt application is implemented in C++ and QML.
+
+The application is designed to run in two environments:
+
+### Development
+
+Ubuntu 26.04 LTS:
+
+```text
+Ubuntu 26.04
+     │
+     ├── Qt 6
+     ├── CMake
+     ├── GStreamer
+     └── GCC
+            │
+            ▼
+      pi_agent_mp3_ui
+```
+
+### Production
+
+Raspberry Pi 3:
+
+```text
 Yocto Linux
-   │
-   ▼
-System Initialization
-   │
-   ▼
-Agent + Audio Services
-   │
-   ▼
-Qt EGLFS Application
-   │
-   ▼
-Ready
+     │
+     ├── Qt 6
+     ├── EGLFS
+     ├── GStreamer
+     ├── ALSA
+     └── AIY Voice HAT
 ```
 
-The system is intended to boot directly into the player rather than exposing a general-purpose desktop.
+The same application architecture is therefore usable during desktop development and embedded deployment.
 
 ---
 
-## 🔊 Audio Architecture
-
-Audio is handled through **ALSA + GStreamer**, with the Google AIY Voice HAT providing the primary audio hardware interface.
+# 📂 Project Structure
 
 ```text
-                ┌───────────────┐
-Microphones ───►│               │
-                │  AIY Voice    │
-Speaker    ◄────│     HAT       │
-                │               │
-Button     ────►│ GPIO          │
-LED        ◄────│ GPIO          │
-                └───────┬───────┘
-                        │
-                       I2S
-                        │
-                ┌───────▼───────┐
-                │ Raspberry Pi  │
-                │     ALSA      │
-                └───────┬───────┘
-                        │
-                ┌───────▼───────┐
-                │  GStreamer    │
-                └───────┬───────┘
-                        │
-                ┌───────▼───────┐
-                │  Qt / Agent   │
-                └───────────────┘
+pi-agent-mp3-player/
+│
+├── app/
+│   └── qt_ui/
+│       ├── .vscode/
+│       │   ├── launch.json
+│       │   ├── tasks.json
+│       │   └── settings.json
+│       │
+│       ├── src/
+│       │   ├── CMakeLists.txt
+│       │   ├── main.cpp
+│       │   ├── PlayerController.h
+│       │   ├── PlayerController.cpp
+│       │   ├── resources.qrc
+│       │   │
+│       │   └── qml/
+│       │       ├── main.qml
+│       │       └── default_cover.svg
+│       │
+│       ├── test_agent_control.py
+│       └── README.md
+│
+├── meta-pi-agent-player/
+│   ├── conf/
+│   │   └── layer.conf
+│   │
+│   ├── recipes-core/
+│   │   └── images/
+│   │       └── core-image-pi-agent-player.bb
+│   │
+│   ├── recipes-kernel/
+│   │   └── # AIY Voice HAT / device-tree integration
+│   │
+│   └── recipes-apps/
+│       ├── qt-mp3-app/
+│       │   └── # Qt 6 application recipe
+│       │
+│       └── pi-agent-daemon/
+│           └── # Agent service recipe
+│
+├── docs/
+│   ├── architecture/
+│   ├── hardware/
+│   └── wiring/
+│
+├── build/
+│   └── # Yocto build environment
+│
+├── LICENSE
+└── README.md
 ```
 
-### ALSA Configuration
+---
 
-Example `/etc/asound.conf`:
+# 🛠️ Ubuntu 26.04 Development Environment
+
+The Qt application can be developed and tested directly on **Ubuntu 26.04 LTS** before deploying it to the Raspberry Pi.
+
+## Prerequisites
+
+Install the required development packages:
+
+```bash
+sudo apt update
+
+sudo apt install -y \
+    build-essential \
+    cmake \
+    qt6-base-dev \
+    qt6-declarative-dev \
+    qt6-multimedia-dev \
+    qml6-module-qtmultimedia \
+    qml6-module-qtquick-controls \
+    qml6-module-qtquick-layouts \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-alsa
+```
+
+---
+
+# 🔨 Build the Qt Application
+
+Enter the Qt application directory:
+
+```bash
+cd ~/workplace/pi-agent-mp3-player/app/qt_ui
+```
+
+Create the build directory:
+
+```bash
+mkdir -p build
+cd build
+```
+
+Configure with CMake:
+
+```bash
+cmake ../src
+```
+
+Build:
+
+```bash
+make -j$(nproc)
+```
+
+The resulting executable should be:
+
+```text
+pi_agent_mp3_ui
+```
+
+Run it:
+
+```bash
+./pi_agent_mp3_ui
+```
+
+---
+
+# 🧪 Agent IPC Test
+
+The repository includes:
+
+```text
+app/qt_ui/test_agent_control.py
+```
+
+This script acts as a simple external agent and communicates with the Qt player through:
+
+```text
+/tmp/pi_agent_mp3.sock
+```
+
+## Run the Player
+
+Terminal 1:
+
+```bash
+cd ~/workplace/pi-agent-mp3-player/app/qt_ui/build
+
+./pi_agent_mp3_ui
+```
+
+## Run the Agent Test
+
+Terminal 2:
+
+```bash
+cd ~/workplace/pi-agent-mp3-player/app/qt_ui
+
+python3 test_agent_control.py
+```
+
+The test script demonstrates:
+
+1. Adding a track
+2. Starting playback
+3. Setting volume
+4. Querying player status
+5. Toggling play/pause
+
+The default track path can be modified inside the test script.
+
+---
+
+# 🧰 VS Code Development
+
+The project includes a `.vscode/` configuration for CMake-based development.
+
+Open the application:
+
+```bash
+cd ~/workplace/pi-agent-mp3-player/app/qt_ui
+
+code .
+```
+
+Select the GCC/CMake kit provided by Ubuntu.
+
+The development workflow is:
+
+```text
+        VS Code
+           │
+           ▼
+      CMake Tools
+           │
+           ▼
+        CMake
+           │
+           ▼
+        GCC / G++
+           │
+           ▼
+   pi_agent_mp3_ui
+```
+
+The project can be launched under GDB for interactive debugging.
+
+---
+
+# 🏗️ Yocto Production Build
+
+The production system is built with **Yocto Project Scarthgap**.
+
+The target machine is:
+
+```bitbake
+MACHINE = "raspberrypi3-64"
+```
+
+Expected layer stack:
+
+```text
+poky
+meta-raspberrypi
+meta-qt6
+meta-pi-agent-player
+```
+
+---
+
+## Clone Yocto
+
+```bash
+git clone -b scarthgap https://git.yoctoproject.org/poky
+
+cd poky
+
+git clone -b scarthgap \
+    https://git.yoctoproject.org/meta-raspberrypi
+
+git clone -b scarthgap \
+    https://github.com/qt/meta-qt6.git
+
+git clone \
+    https://github.com/your-username/pi-agent-mp3-player.git
+```
+
+Initialize the build environment:
+
+```bash
+source oe-init-build-env
+```
+
+Add the layers:
+
+```bash
+bitbake-layers add-layer \
+    ../meta-raspberrypi \
+    ../meta-qt6 \
+    ../pi-agent-mp3-player/meta-pi-agent-player
+```
+
+Verify:
+
+```bash
+bitbake-layers show-layers
+```
+
+---
+
+# ⚙️ Yocto Configuration
+
+Example `conf/local.conf`:
+
+```bitbake
+MACHINE = "raspberrypi3-64"
+
+ENABLE_UART = "1"
+
+# Google AIY Voice HAT
+KERNEL_DEVICETREE:append = " overlays/googlevoicehat-soundcard.dtbo"
+
+DTOVERLAY_PARAM = "i2s=on"
+
+# Audio
+IMAGE_INSTALL:append = " \
+    alsa-utils \
+    alsa-tools \
+    gstreamer1.0 \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-alsa \
+    i2c-tools \
+"
+
+# Qt 6
+IMAGE_INSTALL:append = " \
+    qtbase \
+    qtdeclarative \
+    qtmultimedia \
+"
+
+# Application / Agent
+IMAGE_INSTALL:append = " \
+    pi-agent-service \
+"
+```
+
+> Device-tree overlay names and package names may vary depending on the exact kernel and Yocto layer revisions used by the project.
+
+---
+
+# 🔊 ALSA Configuration
+
+The production image should route the default ALSA device to the AIY Voice HAT.
+
+Example:
 
 ```conf
 pcm.!default {
@@ -207,117 +572,68 @@ ctl.!default {
 }
 ```
 
-> The exact ALSA card name should be verified on the target image with `aplay -l` and `arecord -l`, as hardware enumeration can vary depending on the kernel/device-tree configuration.
+Verify the actual device name on the target:
 
----
+```bash
+aplay -l
+```
 
-## 🏗️ Hardware Architecture
-
-### Target Hardware
-
-| Component | Role |
-|---|---|
-| Raspberry Pi 3 B+ | Main embedded computer |
-| Google AIY Voice Kit v1 | Voice/audio interface |
-| Dual microphone array | Voice capture |
-| AIY speaker driver | Audio playback |
-| Arcade button | Push-to-talk control |
-| AIY LED | Status / activity feedback |
-| Touchscreen | Qt user interface |
-| microSD card | Yocto boot/storage |
-
-### Hardware Interface
-
-```text
-Google AIY Voice Kit v1
-        │
-        ├── I2S ───────► Audio Input
-        │
-        ├── I2S/PWM ───► Audio Output
-        │
-        └── GPIO ──────► Button / LED
-                              │
-                              ▼
-                       Raspberry Pi 3 B+
+```bash
+arecord -l
 ```
 
 ---
 
-## 🧩 Software Architecture
+# 🧪 Raspberry Pi Audio Diagnostics
 
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                         Application                         │
-│                                                             │
-│  ┌──────────────────┐          ┌─────────────────────────┐ │
-│  │   Qt 6 / QML     │◄────────►│     Pi Agent Service    │ │
-│  │   Player UI      │   IPC    │ Voice / LLM / Commands  │ │
-│  └────────┬─────────┘          └───────────┬─────────────┘ │
-│           │                                │               │
-│           │                                │ MQTT          │
-│           │                                ▼               │
-│           │                        Remote Control         │
-│           │                                                │
-│  ┌────────▼──────────────────────────────────────────────┐ │
-│  │                    GStreamer                           │ │
-│  │                 Audio Playback                         │ │
-│  └────────────────────────┬──────────────────────────────┘ │
-│                           │                                │
-├───────────────────────────┼────────────────────────────────┤
-│                           │                                │
-│                      ALSA / I2S                           │
-│                           │                                │
-├───────────────────────────┼────────────────────────────────┤
-│                    Yocto Linux                            │
-│              Systemd / Kernel / DRM-KMS                   │
-└─────────────────────────────────────────────────────────────┘
+Test speaker output:
+
+```bash
+speaker-test -D hw:voicehat -c 1
+```
+
+Test microphone capture:
+
+```bash
+arecord \
+    -D hw:voicehat \
+    -f S16_LE \
+    -r 48000 \
+    -c 2 \
+    test.wav
+```
+
+Inspect kernel messages:
+
+```bash
+dmesg | grep -i voice
+```
+
+```bash
+dmesg | grep -i i2s
+```
+
+Check the agent service:
+
+```bash
+systemctl status pi-agent-service
+```
+
+Follow its logs:
+
+```bash
+journalctl -u pi-agent-service -f
 ```
 
 ---
 
-## 🔄 Voice & Agent Control Flow
+# 📡 MQTT / Remote Control
 
-```text
-[ User presses AIY button ]
-              │
-              ▼
-[ GPIO event detected ]
-              │
-              ▼
-[ LED begins activity indication ]
-              │
-              ▼
-[ Dual microphone captures speech ]
-              │
-              ▼
-[ Speech-to-Text ]
-              │
-              ▼
-[ Pi Agent interprets request ]
-              │
-        ┌─────┴─────┐
-        │           │
-        ▼           ▼
-[ Tool Call ]   [ Conversational
-        │          Response ]
-        ▼           │
-[ Player / MQTT ]   │
-        │           │
-        ▼           ▼
-[ Qt UI Update ]  [ TTS ]
-        │           │
-        └─────┬─────┘
-              ▼
-       [ AIY Speaker ]
-```
+Local UNIX IPC provides fast host-local control.
 
----
+MQTT provides a path toward distributed control.
 
-## 📡 Remote Control
-
-In addition to physical interaction, the system can expose player controls through MQTT.
-
-Example conceptual topics:
+Conceptual topics:
 
 ```text
 pi-agent/player/play
@@ -337,279 +653,157 @@ Example command:
 }
 ```
 
-This allows the player to become part of a larger **home-agent or multi-room audio network**.
+This allows multiple Pi-based players to become networked audio endpoints.
 
 ---
 
-# 🛠️ Yocto Configuration
+# 🧱 System Architecture
 
-The target distribution is based on **Yocto Project Scarthgap**.
-
-## Required Layers
-
-The expected layer stack includes:
+The complete system can be viewed as four layers:
 
 ```text
-poky
-meta-raspberrypi
-meta-qt6
-meta-pi-agent-player
+┌─────────────────────────────────────────────────────────────┐
+│                     AGENT LAYER                            │
+│                                                             │
+│       Pi Agent / LLM / Voice / Python / MQTT               │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                    IPC / Commands
+                           │
+┌──────────────────────────▼──────────────────────────────────┐
+│                   APPLICATION LAYER                         │
+│                                                             │
+│              Qt 6 / QML / PlayerController                 │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                    Media Pipeline
+                           │
+┌──────────────────────────▼──────────────────────────────────┐
+│                     MEDIA LAYER                             │
+│                                                             │
+│                   GStreamer / ALSA                         │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                      Hardware I/O
+                           │
+┌──────────────────────────▼──────────────────────────────────┐
+│                     HARDWARE LAYER                          │
+│                                                             │
+│ Raspberry Pi 3 │ AIY Voice HAT │ GPIO │ I2S │ DRM/KMS      │
+└─────────────────────────────────────────────────────────────┘
 ```
-
-> The project uses Qt 6, so `meta-qt6` should be used rather than the older `meta-qt5` layer.
 
 ---
 
-## Machine Configuration
-
-Example `conf/local.conf`:
-
-```bitbake
-MACHINE = "raspberrypi3-64"
-
-ENABLE_UART = "1"
-
-# Google AIY Voice HAT
-KERNEL_DEVICETREE:append = " overlays/googlevoicehat-soundcard.dtbo"
-
-DTOVERLAY_PARAM = "i2s=on"
-
-# Audio / Multimedia
-IMAGE_INSTALL:append = " \
-    alsa-utils \
-    alsa-tools \
-    gstreamer1.0 \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-ugly \
-    i2c-tools \
-"
-
-# Qt
-IMAGE_INSTALL:append = " \
-    qtbase \
-    qtdeclarative \
-"
-
-# Agent
-IMAGE_INSTALL:append = " \
-    pi-agent-service \
-"
-```
-
-> Device-tree overlay names and package names may need adjustment to match the exact kernel, Yocto layer revisions, and AIY driver implementation used by the build.
-
----
-
-# 📂 Project Structure
+# 🔄 Complete Control Flow
 
 ```text
-pi-agent-mp3-player/
-│
-├── build/
-│   └── # Yocto build environment
-│
-├── meta-pi-agent-player/
-│   ├── conf/
-│   │   └── layer.conf
-│   │
-│   ├── recipes-core/
-│   │   └── images/
-│   │       └── core-image-pi-agent-player.bb
-│   │
-│   ├── recipes-kernel/
-│   │   └── # AIY Voice HAT / device-tree integration
-│   │
-│   └── recipes-apps/
-│       ├── qt-mp3-app/
-│       │   └── # Qt 6 / QML player
-│       │
-│       └── pi-agent-daemon/
-│           └── # Pi Agent integration
-│
-├── src/
-│   ├── qt_ui/
-│   │   ├── qml/
-│   │   └── # C++ / GStreamer integration
-│   │
-│   └── agent_service/
-│       ├── # AIY GPIO interface
-│       ├── # Voice interface
-│       └── # Agent tool handlers
-│
-├── docs/
-│   ├── hardware/
-│   ├── wiring/
-│   └── architecture/
-│
-├── LICENSE
-└── README.md
+                         USER
+                          │
+                    Press AIY Button
+                          │
+                          ▼
+                    GPIO / LED
+                          │
+                          ▼
+                  Microphone Capture
+                          │
+                          ▼
+                    Speech-to-Text
+                          │
+                          ▼
+                     Pi Agent
+                          │
+                          ▼
+                  Intent / Tool Call
+                          │
+                          ▼
+                 UNIX Socket / MQTT
+                          │
+                          ▼
+                PlayerController
+                    ┌─────┴─────┐
+                    │           │
+                    ▼           ▼
+               GStreamer      Qt/QML
+                    │           │
+                    ▼           ▼
+                 Speaker       Touch UI
 ```
 
 ---
 
-# 🚀 Quick Start
+# 🎨 UI Responsibilities
 
-## 1. Clone Yocto
-
-```bash
-git clone -b scarthgap https://git.yoctoproject.org/poky
-cd poky
-```
-
-Clone the Raspberry Pi BSP layer:
-
-```bash
-git clone -b scarthgap https://git.yoctoproject.org/meta-raspberrypi
-```
-
-Clone the Qt 6 layer:
-
-```bash
-git clone -b scarthgap https://github.com/qt/meta-qt6.git
-```
-
-Clone this project:
-
-```bash
-git clone https://github.com/your-username/pi-agent-mp3-player.git
-```
-
----
-
-## 2. Initialize the Build Environment
-
-```bash
-source oe-init-build-env
-```
-
-Add the required layers:
-
-```bash
-bitbake-layers add-layer \
-    ../meta-raspberrypi \
-    ../meta-qt6 \
-    ../pi-agent-mp3-player/meta-pi-agent-player
-```
-
-Verify:
-
-```bash
-bitbake-layers show-layers
-```
-
----
-
-## 3. Build the Image
-
-```bash
-bitbake core-image-pi-agent-player
-```
-
-The resulting image should be generated under:
+The Qt application intentionally remains focused on **presentation and media control**.
 
 ```text
-tmp/deploy/images/raspberrypi3-64/
+Qt/QML
+  │
+  ├── Current Track
+  ├── Album Artwork
+  ├── Artist
+  ├── Album
+  ├── Track Title
+  ├── Playback Progress
+  ├── Volume
+  └── Player State
 ```
+
+The agent remains responsible for interpreting natural language.
+
+This separation prevents the UI from becoming coupled to a particular AI model or voice framework.
 
 ---
 
-## 4. Flash the SD Card
+# 🧭 Development Philosophy
 
-Identify the target block device carefully:
+The project follows a simple principle:
 
-```bash
-lsblk
-```
+> **The device should feel like an appliance, not a computer.**
 
-Then flash the image:
+That means:
 
-```bash
-sudo dd \
-    if=tmp/deploy/images/raspberrypi3-64/core-image-pi-agent-player-raspberrypi3-64.wic \
-    of=/dev/sdX \
-    bs=4M \
-    status=progress \
-    conv=fsync
-```
+- No traditional desktop environment
+- Fast boot
+- Direct hardware access
+- Native Qt interface
+- Dedicated media pipeline
+- Local IPC
+- Optional network control
+- Agent-driven interaction
 
-> **Warning:** Replace `/dev/sdX` with the correct SD-card device. Verify it with `lsblk` before running `dd`.
+The architecture is intentionally modular:
 
----
-
-# 🔧 Development & Debugging
-
-Useful commands on the target device:
-
-### Check audio devices
-
-```bash
-aplay -l
-```
-
-```bash
-arecord -l
-```
-
-### Test speaker output
-
-```bash
-speaker-test -D hw:voicehat -c 1
-```
-
-### Test microphone input
-
-```bash
-arecord \
-    -D hw:voicehat \
-    -f S16_LE \
-    -r 48000 \
-    -c 2 \
-    test.wav
-```
-
-### Check GPIO / I2C
-
-```bash
-i2cdetect -l
-```
-
-```bash
-i2cdetect -y 1
-```
-
-### Inspect services
-
-```bash
-systemctl status pi-agent-service
-```
-
-```bash
-journalctl -u pi-agent-service -f
-```
-
-### Check kernel messages
-
-```bash
-dmesg | grep -i voice
-```
-
-```bash
-dmesg | grep -i i2s
+```text
+Minimal Linux
+      +
+Native Qt
+      +
+GStreamer
+      +
+Hardware I/O
+      +
+Agent Interface
+      =
+Embedded AI Audio Appliance
 ```
 
 ---
 
 # 🛣️ Roadmap
 
-## Phase 1 — Embedded Player
+## Phase 1 — Core Player
 
 - [x] Yocto-based Raspberry Pi image
-- [x] Qt 6 application framework
-- [x] EGLFS direct rendering
-- [x] GStreamer audio pipeline
-- [ ] Production MP3 library management
+- [x] Qt 6 application
+- [x] Qt Quick / QML interface
+- [x] GStreamer integration
+- [x] Basic player controls
+- [x] UNIX Domain Socket IPC
+- [x] Python IPC test client
 - [ ] Persistent playback state
+- [ ] Expanded music library management
 
 ## Phase 2 — AIY Voice Interface
 
@@ -617,13 +811,13 @@ dmesg | grep -i i2s
 - [x] ALSA soundcard support
 - [x] GPIO button integration
 - [x] LED status feedback
-- [ ] Robust voice capture service
-- [ ] Production speech pipeline
+- [ ] Production voice capture service
+- [ ] Speech-to-text integration
 
 ## Phase 3 — Agentic Voice Control
 
 - [ ] Local speech-to-text
-- [ ] Whisper-based embedded STT
+- [ ] Embedded Whisper-based STT
 - [ ] Pi Agent tool integration
 - [ ] Structured player commands
 - [ ] TTS response pipeline
@@ -639,56 +833,36 @@ dmesg | grep -i i2s
 
 ---
 
-# 🎯 Design Philosophy
+# 🔮 Future Vision
 
-The project follows a simple principle:
-
-> **The device should feel like an appliance, not a computer.**
-
-There is no need for a conventional desktop environment when the device has one clear purpose.
-
-The architecture therefore favors:
+The long-term goal is to turn each Raspberry Pi audio station into a **physical endpoint for an AI agent**.
 
 ```text
-Minimal Linux
-     +
-Direct Hardware Access
-     +
-Native Qt UI
-     +
-GStreamer
-     +
-Agent Interface
-     =
-Embedded AI Appliance
+                         HOME AI
+                           │
+                         MQTT
+                           │
+          ┌────────────────┼────────────────┐
+          │                │                │
+          ▼                ▼                ▼
+     ┌──────────┐     ┌──────────┐     ┌──────────┐
+     │ Player 1 │     │ Player 2 │     │ Player 3 │
+     │ Pi + AIY │     │ Pi + AIY │     │ Pi + AIY │
+     └──────────┘     └──────────┘     └──────────┘
 ```
 
-The Raspberry Pi provides the computing platform, Yocto provides the operating-system foundation, Qt provides the interface, GStreamer handles media, and the agent provides the natural-language control layer.
+Each node can provide:
 
----
+- Physical audio output
+- Voice input
+- Touch interface
+- Local agent endpoint
+- Network control
+- Distributed playback
 
-# 🔮 Future Architecture
+The result is not simply an MP3 player.
 
-The long-term direction is to evolve the player from a standalone MP3 device into an **agent-native household audio node**.
-
-```text
-                    ┌───────────────────────┐
-                    │      Home AI Agent    │
-                    └───────────┬───────────┘
-                                │
-                              MQTT
-                                │
-              ┌─────────────────┼─────────────────┐
-              │                 │                 │
-              ▼                 ▼                 ▼
-       ┌────────────┐    ┌────────────┐    ┌────────────┐
-       │ Player #1  │    │ Player #2  │    │ Player #3  │
-       │ Raspberry  │    │ Raspberry  │    │ Raspberry  │
-       │ Pi + AIY   │    │ Pi + AIY   │    │ Pi + AIY   │
-       └────────────┘    └────────────┘    └────────────┘
-```
-
-This architecture makes each Raspberry Pi audio station a **physical endpoint for an AI agent**.
+It is a small **agent-native computing appliance with a physical voice, display, and speaker**.
 
 ---
 
@@ -696,19 +870,21 @@ This architecture makes each Raspberry Pi audio station a **physical endpoint fo
 
 Contributions are welcome.
 
-Areas where contributions are especially useful:
+Areas of interest include:
 
 - Yocto recipes
 - Raspberry Pi device-tree integration
-- AIY Voice HAT support
-- Qt/QML UI
+- Google AIY Voice HAT support
+- Qt/QML development
 - GStreamer pipelines
+- UNIX IPC protocol
 - Agent tool definitions
 - MQTT protocols
 - Embedded speech recognition
+- TTS integration
 - Hardware documentation
 
-Please open an issue before major architectural changes.
+For major architectural changes, please open an issue first.
 
 ---
 
@@ -720,7 +896,7 @@ See [`LICENSE`](LICENSE) for details.
 
 ---
 
-## Acknowledgements
+# 🙏 Acknowledgements
 
 This project builds upon the work of:
 
