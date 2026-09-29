@@ -1,98 +1,166 @@
-# 🎵 Smart Embedded MP3 Player with Yocto, Qt & Agentic Control
+# pi-agent-mp3-player
 
-An ultra-lightweight, high-performance embedded MP3 media player powered by **Raspberry Pi 3**, built using a custom **Yocto Linux distribution**, featuring a hardware-accelerated **Qt GUI**, and driven by an **autonomous AI Coding / Control Agent**.
+> **AI-Driven, Voice-Enabled Embedded Audio Station on Raspberry Pi 3**
+> Powered by Yocto Linux, Qt 6 EGLFS, Google AIY Voice Kit v1, and Pi Agent.
+
+[![Build Status](https://img.shields.io/badge/Yocto-Scarthgap-blue.svg)](https://www.yoctoproject.org/)
+[![Framework](https://img.shields.io/badge/UI-Qt%206%20EGLFS-green.svg)](https://www.qt.io/)
+[![Hardware](https://img.shields.io/badge/Hardware-RPi%203%20%2B%20AIY%20Voice%20v1-orange.svg)](https://aiyprojects.withgoogle.com/voice-v1/)
+[![Agent Engine](https://img.shields.io/badge/Agent-Pi%20Agent-purple.svg)](https://pi.dev)
 
 ---
 
 ## 📌 Executive Summary
 
-Modern smart media playback devices often rely on heavy OS stacks, resulting in long boot times, high memory consumption, and potential privacy issues from cloud dependency. 
+**`pi-agent-mp3-player`** is an enterprise-grade embedded IoT music player that turns a **Raspberry Pi 3** into a multi-modal, agent-driven smart audio workstation. 
 
-This project demonstrates an end-to-end embedded system proposal that converts a budget-friendly **Raspberry Pi 3** into an **industrial-grade IoT audio node**. By combining Yocto Linux for bare-minimum OS overhead, Qt running directly on EGLFS for direct GPU-accelerated graphics, and an onboard/edge AI Agent, this player enables local natural language control and dynamic agentic script creation.
+By integrating the **Google AIY Voice Kit (v1) HAT**, the project leverages hardware-accelerated dual-microphone array audio capture, custom ALSA driver support, and physical push-button LED feedback. The system bypasses heavy desktop environments using a lightweight **Yocto Custom Distro**, running **Qt 6 (EGLFS)** directly on top of DRM/KMS GPU acceleration, and exposes control planes to local **Pi Agent** instances and remote MQTT networks.
 
 ---
 
-## 🏛️ System Architecture
+## 🏗️ Hardware Architecture & Integration
 
-```
 +-------------------------------------------------------------------------------+
-|                       Raspberry Pi 3 Model B (Yocto Linux)                    |
+|                        Google AIY Voice Kit v1 (Voice HAT)                    |
+|  +-------------------------+  +--------------------------+  +--------------+  |
+|  | Dual Mic Array (I2S)    |  | Speaker Driver (3W Mono) |  | Arcade Button|  |
+|  | (Voice Capture)         |  | (Audio Playback Output)  |  | (LED Light)  |  |
+|  +------------+------------+  +------------+-------------+  +-------+------+  |
++---------------|----------------------------|------------------------|---------+
+| I2S                        | I2S/PWM                | GPIO
++---------------v----------------------------v------------------------v---------+
+|                               Raspberry Pi 3 B+                               |
 |                                                                               |
-|   +--------------------------+               +----------------------------+   |
-|   |  Qt 6 / QML Front-end    |  Unix Domain  |  Local AI Coding Agent     |   |
-|   |  (EGLFS / Direct DRM)    |<-- Socket --->|  (Python / Node.js Runner) |   |
-|   +------------+-------------+     / DBus    +--------------+-------------+   |
-|                |                                            |                 |
-|   +------------v-------------+               +--------------v-------------+   |
-|   |  GStreamer / ALSA Core   |               |   IoT Bridge (MQTT / REST) |   |
-|   +--------------------------+               +----------------------------+   |
+|  +------------------------+  +------------------------+  +-----------------+  |
+|  |    Qt 6 Application    |  |  Voice & Agent Daemon  |  |   Systemd Core  |  |
+|  |   (EGLFS / Touch UI)   |  | (Pi Agent + AIY Driver)|  | (Fast-boot init)|  |
+|  +-----------+------------+  +-----------+------------+  +-----------------+  |
+|              |                           |                                    |
+|              +---------> D-Bus / IPC <---+                                    |
+|                                  |                                            |
+|                        +---------v---------+                                  |
+|                        | GStreamer Engine  |                                  |
+|                        +-------------------+                                  |
 +-------------------------------------------------------------------------------+
-```
+
 
 ---
 
-## 🚀 Key Features
+## ✨ Key Features
 
-* **Custom Minimal Yocto OS:** Stripped of unnecessary services and bloat, booting directly into the media interface in seconds.
-* **Direct EGLFS Graphics:** Qt 6 QML rendered directly to the screen via GPU hardware acceleration without requiring heavy display servers like X11.
-* **Agentic Automation & Control:** Integrated local AI Agent capabilities that can receive natural language requests, parse tool-calling commands, and dynamically execute playlist logic via local IPC sockets or MQTT.
-* **IoT Interoperability:** Remote monitoring, telemetry (playback state, temperature, hardware usage), and command reception over standard IoT protocols (MQTT, WebSockets).
-
----
-
-## 🛠️ Tech Stack & Hardware Specs
-
-### Hardware
-* **Board:** Raspberry Pi 3 Model B (Cortex-A53 64-bit, 1GB RAM)
-* **Audio Output:** 3.5mm Headphone Jack or external I2S Audio DAC (e.g., HiFiBerry)
-* **Display:** 3.5" to 7" Touchscreen (SPI or HDMI)
-
-### Software & Build Environment
-* **Build Framework:** Yocto Project (Poky - Scarthgap/Kirkstone)
-* **BSP Layer:** `meta-raspberrypi`
-* **GUI Framework:** Qt 6 / Qt 5 (`meta-qt5` / `meta-qt6`)
-* **Audio Engine:** GStreamer 1.0 / ALSA
-* **IoT & Networking:** `mosquitto` (MQTT), WebSocket, Node.js/Python Runtime
-* **Agent Runtime:** Lightweight Local LLM runner / OpenAI API integration wrapper
+1. **Google AIY Voice HAT Hardware Integration:**
+   * **I2S Audio Codec Driver (`snd_rpi_googlevoicehat_soundcard`):** High-fidelity audio input/output routed through AIY Voice HAT instead of standard 3.5mm jack.
+   * **GPIO Arcade Button & Pulsing LED:** Hardware push-to-talk activation and glowing LED indicator during agent speech processing.
+2. **Minimalist Yocto OS (Custom Distro):**
+   * Instant boot-to-app (< 6 seconds) powered by Systemd.
+   * Tailored layer stack: `meta-raspberrypi` + `meta-qt6` + custom `meta-aiy-voice`.
+3. **Hardware Acceleration GUI (Qt 6 EGLFS):**
+   * Frameless, lightweight Qt Quick touch interface direct-rendered on VC4 GPU.
+4. **Agentic Voice & IoT Control (Pi Agent):**
+   * Local or cloud LLM function calling ("Play classical music", "Set volume to 80%", "Skip song").
+   * Dual Control Protocols: Physical AIY button voice trigger + Remote MQTT broker topics.
 
 ---
 
-## 📂 Project Structure Plan
+## 🛠️ Yocto Board Support Package (BSP) Configuration
 
-```text
-├── build-yocto/            # Yocto build configuration directory
-│   ├── conf/local.conf     # Target MACHINE, PACKAGECONFIG, IMAGE_INSTALL
-│   └── conf/bblayers.conf  # Active layer definitions
-├── meta-smartplayer/       # Custom Yocto layer for this project
-│   ├── recipes-apps/       # Build recipes for Qt App and Agent Daemon
-│   └── recipes-core/       # Systemd boot units and auto-start configurations
+To support the Google AIY Voice Kit (v1) soundcard and GPIO peripherals, add the following layer directives to your `meta-customer-layer`:
+
+### 1. Device Tree & Kernel Modules (`conf/local.conf`)
+```bitbake
+MACHINE = "raspberrypi3-64"
+ENABLE_UART = "1"
+
+# Enable Google AIY Voice HAT Soundcard Overlays
+KERNEL_DEVICETREE:append = " overlays/googlevoicehat-soundcard.dtbo"
+DTOVERLAY_PARAM = "i2s=on"
+
+# Include Necessary GStreamer & Audio Drivers
+IMAGE_INSTALL:append = " \
+    alsa-utils \
+    alsa-tools \
+    gstreamer1.0 \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-ugly \
+    i2c-tools \
+    rpio \
+    qtbase \
+    qtdeclarative \
+    pi-agent-service \
+"
+2. Audio Output Routing (/etc/asound.conf)
+Ensure ALSA routes sound directly through the AIY Voice HAT hardware:
+
+Ini, TOML
+pcm.!default {
+    type hw
+    card voicehat
+}
+ctl.!default {
+    type hw
+    card voicehat
+}
+📂 Project Directory Structure
+Plaintext
+pi-agent-mp3-player/
+├── build/                      # Yocto Build Output Environment
+├── meta-pi-agent-player/       # Custom Yocto Layer
+│   ├── recipes-core/
+│   │   └── images/             # Custom Core Image Specification
+│   ├── recipes-kernel/         # AIY Voice HAT Device Tree Patches
+│   └── recipes-apps/
+│       ├── qt-mp3-app/         # Qt 6 EGLFS GUI Source Code
+│       └── pi-agent-daemon/    # Node.js/Python Pi Agent Integration
+├── docs/                       # Wiring Diagrams & Hardware Schematics
 ├── src/
-│   ├── qt-player/          # Qt C++ & QML UI source code
-│   └── agent-daemon/       # Python/Node.js script runner & IoT connector
-└── docs/                   # Hardware wiring diagrams and API docs
-```
+│   ├── qt_ui/                  # QML & C++ GStreamer Wrapper
+│   └── agent_service/          # AIY Button Listener & Speech Function Calling
+└── README.md
+🔄 Voice & Agent Control Loop Flow
+[ User Presses AIY Arcade Button ]
+                │
+                ▼
+[ GPIO Interrupt Triggers AIY LED to Pulse ]
+                │
+                ▼
+[ Dual Mic Captures Voice Input (I2S) ]
+                │
+                ▼
+[ Pi Agent Service Parses Intent via LLM Tool Call ]
+                │
+    ┌───────────┴───────────┐
+    ▼                       ▼
+[ Exec JSON Command ]   [ Speech Response (TTS) ]
+    │                       │
+    ▼                       ▼
+[ Qt Player UI Update ] [ Speaker Output via AIY HAT ]
+🚀 Quick Start Guide
+Step 1: Clone and Set Up Yocto Layers
+Bash
+git clone -b scarthgap git://git.yoctoproject.org/poky
+cd poky
+git clone -b scarthgap git://git.yoctoproject.org/meta-raspberrypi
+git clone -b scarthgap [https://github.com/meta-qt5/meta-qt5.git](https://github.com/meta-qt5/meta-qt5.git)
+git clone [https://github.com/your-username/pi-agent-mp3-player.git](https://github.com/your-username/pi-agent-mp3-player.git)
+Step 2: Build the Image
+Bash
+source oe-init-build-env
+bitbake-layers add-layer ../meta-raspberrypi ../meta-qt5 ../pi-agent-mp3-player/meta-pi-agent-player
+bitbake core-image-pi-agent-player
+Step 3: Flash SD Card
+Bash
+sudo dd if=tmp/deploy/images/raspberrypi3-64/core-image-pi-agent-player-raspberrypi3-64.wic of=/dev/sdX bs=4M status=progress
+🛣️ Roadmap & Future Enhancements
+[x] Phase 1: Core Yocto Layer + Qt 6 EGLFS GStreamer Integration.
 
----
+[x] Phase 2: AIY Voice HAT (v1) ALSA Driver & GPIO Button/LED Bindings.
 
-## ⚙️ Development Roadmap
+[ ] Phase 3: On-Device Speech-to-Text (STT) using Whisper-Embedded / Local Model.
 
-- [ ] **Phase 1: Yocto BSP & OS Customization**
-  - Configure `raspberrypi3-64` image with GStreamer, ALSA, and Qt dependencies.
-  - Optimize system boot time under 8 seconds.
-- [ ] **Phase 2: Qt Audio UI Application**
-  - Design touchscreen-friendly QML media controls.
-  - Integrate `QMediaPlayer` with GStreamer audio pipeline.
-- [ ] **Phase 3: IoT & Agent Bridge Integration**
-  - Set up local IPC (Socket/DBus) between Qt Application and Agent runner.
-  - Implement MQTT client for external smart home telemetry/control.
-- [ ] **Phase 4: Optimization & Deployment**
-  - Implement systemd auto-start for seamless boot-to-UI experience.
-  - Run stability tests under resource-constrained scenarios.
+[ ] Phase 4: Multi-room Synchronization over MQTT Mesh Network.
 
----
+📜 License
+Distributed under the MIT License. See LICENSE for more information.
 
-## 🤝 Contributing & License
-
-Contributions, feedback, and feature requests are welcome! Feel free to open an issue or submit a pull request.
-
-This project is licensed under the **MIT License**.
+## 🏗️ Hardware Architecture & Integration
