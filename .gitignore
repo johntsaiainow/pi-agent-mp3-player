@@ -1,0 +1,22 @@
+# 1. remove specific Recipe and audio sources
+**/recipes-apps/my-music/my-music.bb
+**/my-music/
+
+# 2. Remove Yocto / BitBake huge complie produce and download cache
+build*/
+downloads/
+sstate-cache/
+tmp*/
+*.wic
+*.wic.bz2
+*.wic.gz
+*.ext4
+*.img
+
+# 3. remove enviroment setup and temporary files
+bitbake/
+poky/
+*.pyc
+*.swp
+*~
+.oe-build-env-*

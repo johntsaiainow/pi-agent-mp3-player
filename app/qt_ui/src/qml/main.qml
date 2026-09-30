@@ -5,16 +5,19 @@ import QtQuick.Dialogs
 
 Window {
     id: root
-    width: 800
-    height: 480
     visible: true
     title: qsTr("Pi Agent MP3 Station - Hi-Fi Studio")
     color: "#121212"
 
-    // 檔案選擇器器 (專門挑選 MP3/Audio)
+    // Auto-adapt to display resolution while maintaining 800x480 ratio fallback
+    width: Screen.width > 0 ? Screen.width : 800
+    height: Screen.height > 0 ? Screen.height : 480
+    visibility: Window.FullScreen
+
+    // File Dialog for Selecting MP3/Audio
     FileDialog {
         id: fileDialog
-        title: "選擇 MP3 檔案"
+        title: "Select MP3 File"
         currentFolder: "file:///home/john/Music"
         nameFilters: ["Audio Files (*.mp3 *.flac *.wav *.m4a)"]
         fileMode: FileDialog.OpenFiles
@@ -28,17 +31,17 @@ Window {
         anchors.margins: 15
         spacing: 20
 
-        // ==================== 左側：唱片封面與控制面板 ====================
+        // ==================== Left Column: Album Art & Controls ====================
         ColumnLayout {
-            Layout.preferredWidth: 380
+            Layout.preferredWidth: parent.width * 0.45
             Layout.fillHeight: true
-            spacing: 15
+            spacing: 12
 
-            // 1. 唱片封面 (帶旋轉效果)
+            // 1. Album Art (Rotating Disk Effect)
             Rectangle {
                 Layout.alignment: Qt.AlignHCenter
-                implicitWidth: 180
-                implicitHeight: 180
+                implicitWidth: Math.min(parent.width * 0.5, 180)
+                implicitHeight: implicitWidth
                 color: "#1E1E1E"
                 radius: 12
                 border.color: "#333333"
@@ -52,7 +55,6 @@ Window {
                     fillMode: Image.PreserveAspectFit
                     mipmap: true
 
-                    // 當播放時旋轉封面
                     RotationAnimation on rotation {
                         running: player.isPlaying
                         from: 0
@@ -63,16 +65,16 @@ Window {
                 }
             }
 
-            // 2. 歌名與歌手資訊
+            // 2. Track Title & Artist Info
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 4
 
                 Text {
                     Layout.fillWidth: true
-                    text: player.currentTrackTitle
+                    text: player.currentTrackTitle !== "" ? player.currentTrackTitle : "No Track Selected"
                     color: "#FFFFFF"
-                    font.pixelSize: 20
+                    font.pixelSize: 18
                     font.bold: true
                     horizontalAlignment: Text.AlignHCenter
                     elide: Text.ElideRight
@@ -80,15 +82,15 @@ Window {
 
                 Text {
                     Layout.fillWidth: true
-                    text: player.currentArtist
+                    text: player.currentArtist !== "" ? player.currentArtist : "Unknown Artist"
                     color: "#1DB954"
-                    font.pixelSize: 14
+                    font.pixelSize: 13
                     horizontalAlignment: Text.AlignHCenter
                     elide: Text.ElideRight
                 }
             }
 
-            // 3. 播放進度條
+            // 3. Playback Position Slider
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 2
@@ -117,7 +119,7 @@ Window {
                 }
             }
 
-            // 4. 播放控制按鈕區 (Prev / Play / Next)
+            // 4. Transport Controls (Prev / Play / Next)
             RowLayout {
                 Layout.alignment: Qt.AlignHCenter
                 spacing: 15
@@ -129,14 +131,14 @@ Window {
                 }
 
                 Button {
-                    implicitWidth: 60
-                    implicitHeight: 60
+                    implicitWidth: 56
+                    implicitHeight: 56
                     text: player.isPlaying ? "⏸" : "▶"
-                    font.pixelSize: 26
+                    font.pixelSize: 24
                     onClicked: player.playPause()
                     background: Rectangle {
                         color: parent.down ? "#1AA34A" : "#1DB954"
-                        radius: 30
+                        radius: 28
                     }
                 }
 
@@ -147,13 +149,13 @@ Window {
                 }
             }
 
-            // 5. 音量控制區
+            // 5. Volume Slider
             RowLayout {
                 Layout.alignment: Qt.AlignHCenter
                 spacing: 8
-                Text { text: "🔊"; color: "#AAAAAA"; font.pixelSize: 16 }
+                Text { text: "🔊"; color: "#AAAAAA"; font.pixelSize: 15 }
                 Slider {
-                    implicitWidth: 140
+                    implicitWidth: 130
                     from: 0.0
                     to: 1.0
                     value: player.volume
@@ -162,7 +164,7 @@ Window {
             }
         }
 
-        // ==================== 右側：播放清單 (Playlist) ====================
+        // ==================== Right Column: Playlist ====================
         ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -171,21 +173,20 @@ Window {
             RowLayout {
                 Layout.fillWidth: true
                 Text {
-                    text: "播放清單"
+                    text: "Playlist"
                     color: "#FFFFFF"
                     font.pixelSize: 18
                     font.bold: true
                 }
                 Item { Layout.fillWidth: true }
 
-                // 開啟檔案選單按鈕
                 Button {
-                    text: "➕ 新增音樂"
+                    text: "+ Add Music"
                     onClicked: fileDialog.open()
                 }
             }
 
-            // 播放清單列表
+            // Playlist ListView Container
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -252,7 +253,7 @@ Window {
         }
     }
 
-    // 時間毫秒轉 mm:ss 輔助函式
+    // Helper Function: Format milliseconds to mm:ss
     function formatTime(ms) {
         if (!ms || ms <= 0) return "00:00"
         var totalSeconds = Math.floor(ms / 1000)

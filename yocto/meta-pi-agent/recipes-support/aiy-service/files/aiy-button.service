@@ -1,0 +1,12 @@
+[Unit]
+Description=Google AIY Voice Kit v1 Hardware Bridge Service
+After=sound.target local-fs.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /usr/bin/aiy_button_service.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
