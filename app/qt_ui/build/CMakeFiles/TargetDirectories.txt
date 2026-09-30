@@ -1,5 +1,0 @@
-/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build/CMakeFiles/pi_agent_mp3_ui.dir
-/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build/CMakeFiles/edit_cache.dir
-/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build/CMakeFiles/rebuild_cache.dir
-/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build/CMakeFiles/pi_agent_mp3_ui_autogen_timestamp_deps.dir
-/home/john/workplace/pi-agent-mp3-player/app/qt_ui/build/CMakeFiles/pi_agent_mp3_ui_autogen.dir
